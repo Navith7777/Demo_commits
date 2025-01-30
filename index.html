@@ -1,60 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navith ChatBot | Project DEv</title>
-  <!-- Linking Google Fonts For Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        /* Your existing styles go here */
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #273e50;
+        }
+        .container{
+            width: 350px;
+            background: url("#");
+            background-size: cover;
+            background-position: center;
+            padding: 45px 50px 140px;
+            border-radius: 10px;
+            box-shadow: 5px 10px 40px #000000bd;
+            position: relative;
+            overflow: hidden;
+            transform: 0.4s;
+        
+        
+        }
+        .container h1{
+            color: #fff;
+            margin-bottom: 40px;
+            text-align: center;
+            cursor: pointer;
+        
+        }
+        form{
+            text-align: center;
+        }
+        form .inp{
+            margin: 5px 0 20px;
+            position: relative;
+        }
+        form .inp input{
+            width: 100%;
+            padding: 10px 5px 10px 35px;
+            border: none;
+            outline: none;
+            font-size: 13px;
+            border-radius: 5px;
+        }
+        form .inp i{
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #4db6fc;
+        }
+        form .check-box{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        form .check-box .check{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        form .check-box .check span{
+            font-size: 13px;
+            color: #fff;
+        }
+        form .check-box .forgot{
+            color: #fff;
+            font-size: 14px;
+        
+        }
+        form button{
+            width: 100%;
+            padding: 10px 0;
+            background-color: #4db6fc;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            border: 1px solid #4db6fc;
+            transition: 0.4s;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        form button:hover{
+            background-color: #fff;
+            color: #4db6fc;
+        }
+        .sign-up{
+            position: absolute;
+            top: calc(100% - 75px);
+            left: 0;
+            width: 350px;
+            background-color: #fff;
+            padding: 20px 50px 100px;
+            border-radius: 60%/10%;
+            transition: all .8s ease-in-out;
+        }
+        .sign-up.active{
+            top: 90px;
+        }
+        .sign-up h1{
+            color: #4db6fc;
+        }
+        .sign-up form .inp input{
+            background-color: #e6ebf0;
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <!-- Header Greetings -->
-    <h1 class="title">Hello, there</h1>
-    <p class="subtitle">How can I help you today?</p>
+    <div class="container">
+        <!-- Sign In Form -->
+        <div class="sign-in">
+            <h1 id="signIn">Sign In</h1>
+            <form id="signInForm">
+                <div class="inp">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="inp">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" id="submitSignIn">Login</button>
+            </form>
+            <div id="signInMessage" class="message"></div> <!-- Add this for the messages -->
+        </div>
 
-    <!-- Suggestion list -->
-    <ul class="suggestion-list">
-      <li class="suggestion">
-        <h4 class="text">Help me plan a game night with my 5 best friends for under $100.</h4>
-        <span class="icon material-symbols-rounded">draw</span>
-      </li>
-      <li class="suggestion">
-        <h4 class="text">What are the best tips to improve my public speaking skills?</h4>
-        <span class="icon material-symbols-rounded">lightbulb</span>
-      </li>
-      <li class="suggestion">
-        <h4 class="text">Can you help me find the latest news on web development?</h4>
-        <span class="icon material-symbols-rounded">explore</span>
-      </li>
-      <li class="suggestion">
-        <h4 class="text">Write JavaScript code to sum all elements in an array.</h4>
-        <span class="icon material-symbols-rounded">code</span>
-      </li>
-    </ul>
-  </header>
+        <!-- Sign Up Form -->
+        <div class="sign-up">
+            <h1 id="signUp">Sign Up</h1>
+            <form id="signUpForm">
+                <div class="inp">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="fName" placeholder="First Name" required>
+                </div>
+                <div class="inp">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="rEmail" placeholder="Email" required>
+                </div>
+                <div class="inp">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="rPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" id="submitSignUp">Sign Up</button>
+            </form>
+            <div id="signUpMessage" class="message"></div> <!-- Add this for the messages -->
+        </div>
+    </div>
 
-  <!-- Chat List / Container -->
-  <div class="chat-list"></div>
+    <script src="https://kit.fontawesome.com/7ba87a9790.js" crossorigin="anonymous"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
-  <!-- Typing Area -->
-  <div class="typing-area">
-    <form action="#" class="typing-form">
-      <div class="input-wrapper">
-        <input type="text" placeholder="Enter a prompt here" class="typing-input" required />
-        <button id="send-message-button" class="icon material-symbols-rounded">send</button>
-      </div>
-      <div class="action-buttons">
-        <span id="theme-toggle-button" class="icon material-symbols-rounded">light_mode</span>
-        <span id="delete-chat-button" class="icon material-symbols-rounded">delete</span>
-      </div>
-    </form>
-    <p class="disclaimer-text">
-      NavithBOt may display inaccurate info, including about people, so double-check its responses.
-    </p>
-  </div>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBveqHIX0SPYSJFIfhnkvyKJhEDlvPfcaM",
+            authDomain: "login-cf5d1.firebaseapp.com",
+            projectId: "login-cf5d1",
+            storageBucket: "login-cf5d1.appspot.com",
+            messagingSenderId: "102481692058",
+            appId: "1:102481692058:web:3117019326e9d09086e623"
+        };
 
-  <script src="script.js"></script>
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore();
+
+        // Function to show success or error messages
+        function showMessage(message, divId) {
+            const messageDiv = document.getElementById(divId);
+            messageDiv.style.display = "block";
+            messageDiv.innerHTML = message;
+            messageDiv.style.opacity = 1;
+            setTimeout(function() {
+                messageDiv.style.opacity = 0;
+            }, 5000);
+        }
+
+        // Sign Up Form Submission
+        const signUpForm = document.getElementById('signUpForm');
+        signUpForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('rEmail').value;
+            const password = document.getElementById('rPassword').value;
+            const firstName = document.getElementById('fName').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    const userData = { email, firstName };
+
+                    showMessage('Account Created Successfully', 'signUpMessage');
+
+                    const docRef = doc(db, "users", user.uid);
+                    setDoc(docRef, userData)
+                        .then(() => {
+                            window.location.href = 'index.html'; // Redirect after success
+                        })
+                        .catch((error) => {
+                            console.error("Error writing document", error);
+                            showMessage('Error saving user data', 'signUpMessage');
+                        });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    if (errorCode === 'auth/email-already-in-use') {
+                        showMessage('Email Address Already Exists !!!', 'signUpMessage');
+                    } else {
+                        showMessage('Unable to create User', 'signUpMessage');
+                    }
+                });
+        });
+
+        // Sign In Form Submission
+        const signInForm = document.getElementById('signInForm');
+        signInForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    showMessage('Login is successful', 'signInMessage');
+                    const user = userCredential.user;
+
+                    localStorage.setItem('loggedInUserId', user.uid);
+                    window.location.href = 'homepage.html'; // Redirect after success
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    if (errorCode === 'auth/invalid-credential') {
+                        showMessage('Incorrect Email or Password', 'signInMessage');
+                    } else {
+                        showMessage('Account does not Exist', 'signInMessage');
+                    }
+                });
+        });
+
+        // Toggle between Sign In and Sign Up Forms
+        document.getElementById('signUp').onclick = () => {
+            document.querySelector('.sign-up').classList.add('active');
+            document.querySelector('.sign-in').classList.remove('active');
+        };
+        document.getElementById('signIn').onclick = () => {
+            document.querySelector('.sign-up').classList.remove('active');
+            document.querySelector('.sign-in').classList.add('active');
+        };
+    </script>
 </body>
-</html>
