@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Support Chat Bot</title>
   <style>
+    .sub-option::after {
+        content: '★';
+        color: red;
+        margin-left: 5px;
+    }
+    
 
     /* Basic chatbot container styles */
 .chatbot-container {
@@ -270,161 +276,166 @@
 </head>
 <body>
     <div class="chatbot-container">
-      <div class="title">Chat Bot</div>
-  
-      <!-- Admission Section -->
-      <button class="option" onclick="toggleSubSection('admission-sub', 'staffs-sub')">Admission</button>
-      <div id="admission-sub" class="content-section">
-        <button class="sub-option" onclick="toggleSubContent('admission-type1')">Type 1</button>
-        <div id="admission-type1" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What are the admission requirements?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What documents are required?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What are the deadlines?
-          </div>
+        <div class="title">Chat Bot</div>
+    
+        <!-- Admission Section -->
+        <button class="option" onclick="toggleSubSection('admission-sub', 'staffs-sub')">Academic Programs and Courses</button>
+        <div id="admission-sub" class="content-section">
+            <button class="sub-option" onclick="toggleSubContent('admission-type1')"> Diploma Courses Offered</button>
+            <div id="admission-type1" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> What are the specific diploma courses available at Sankar Polytechnic College?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Are there any new or specialized courses introduced in recent years?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i>How do these diploma programs align with current industry needs?
+                </div>
+            </div>
+    
+            <button class="sub-option" onclick="toggleSubContent('admission-type2')">Curriculum and Industry Alignment</button>
+            <div id="admission-type2" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i>How often is the curriculum updated to reflect industry changes and advancements?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Are there any industry collaborations or tie-ups for practical exposure?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> How does the curriculum focus on both theoretical knowledge and hands-on skills?
+                </div>
+            </div>
         </div>
-  
-        <button class="sub-option" onclick="toggleSubContent('admission-type2')">Type 2</button>
-        <div id="admission-type2" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can I apply for a scholarship?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> Are there any entrance exams?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What is the tuition fee?
-          </div>
+    
+        <!-- Staff Section -->
+        <button class="option" onclick="toggleSubSection('staffs-sub', 'admission-sub')">Campus Infrastructure and Facilities</button>
+        <div id="staffs-sub" class="content-section">
+            <button class="sub-option" onclick="toggleSubContent('staffs-type1')">Classrooms and Laboratories</button>
+            <div id="staffs-type1" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i>How are the classrooms equipped for interactive learning?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Are the laboratories well-equipped for practical experiments and projects?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> How do the college’s facilities support hands-on learning in various engineering disciplines?
+                </div>
+            </div>
+    
+            <button class="sub-option" onclick="toggleSubContent('staffs-type2')">Campus Amenities and Services</button>
+            <div id="staffs-type2" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> What kind of sports and recreational facilities are available for students?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Does the campus provide on-campus accommodation or hostels for students?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Are there any health and wellness services available to students on campus?
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Staff Section -->
-      <button class="option" onclick="toggleSubSection('staffs-sub', 'admission-sub')">Staffs</button>
-      <div id="staffs-sub" class="content-section">
-        <button class="sub-option" onclick="toggleSubContent('staffs-type1')">Type 1</button>
-        <div id="staffs-type1" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What is the staff recruitment process?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What are the qualifications needed for teaching staff?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can I contact staff for academic queries?
-          </div>
+    
+        <!-- Students Section -->
+        <button class="option" onclick="toggleSubSection('students-sub', 'staffs-sub')">Student Life and Extracurricular Activities</button>
+        <div id="students-sub" class="content-section">
+            <button class="sub-option" onclick="toggleSubContent('students-type1')">Clubs and Societies &#9733;</button>
+            <div id="students-type1" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> What clubs or student organizations are available at Sankar Polytechnic College?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> How do these clubs contribute to the personal development of students?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Are there any technical clubs or innovation-driven societies for engineering students?
+                </div>
+            </div>
+    
+            <button class="sub-option" onclick="toggleSubContent('students-type2')"> Cultural and Technical Events</button>
+            <div id="students-type2" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> What annual cultural or technical events are organized by the college?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Are there opportunities for students to showcase their talents in these events?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> How does the college support participation in national or international competitions?
+                </div>
+            </div>
         </div>
-  
-        <button class="sub-option" onclick="toggleSubContent('staffs-type2')">Type 2</button>
-        <div id="staffs-type2" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> Are staff positions available for non-teaching roles?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I apply for a staff position?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What benefits do staff members receive?
-          </div>
+    
+        <!-- Books Section -->
+        <button class="option" onclick="toggleSubSection('books-sub', 'students-sub')">Placement and Internship Opportunities</button>
+        <div id="books-sub" class="content-section">
+            <button class="sub-option" onclick="toggleSubContent('books-type1')">Admission Requirements and Process</button>
+            <div id="books-type1" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> What is the eligibility criteria for admission to the diploma courses?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> How is the admission process conducted?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> What is the typical timeline for applying and securing admission?
+                </div>
+            </div>
+    
+            <button class="sub-option" onclick="toggleSubContent('books-type2')">Scholarships and Financial Aid</button>
+            <div id="books-type2" class="sub-content">
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Does Sankar Polytechnic College offer any merit-based scholarships?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> Are there any government scholarships available for students?
+                </div>
+                <div class="question" onclick="handleQuestionClick(this)">
+                    <i class="fas fa-question-circle"></i> What are the options for students in need of financial assistance?
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Students Section -->
-      <button class="option" onclick="toggleSubSection('students-sub', 'staffs-sub')">Students</button>
-      <div id="students-sub" class="content-section">
-        <button class="sub-option" onclick="toggleSubContent('students-type1')">Type 1</button>
-        <div id="students-type1" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can I register for classes?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What student facilities are available on campus?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I access the student portal?
-          </div>
-        </div>
-  
-        <button class="sub-option" onclick="toggleSubContent('students-type2')">Type 2</button>
-        <div id="students-type2" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can I get academic support?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I apply for student discounts?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What events are organized for students?
-          </div>
-        </div>
-      </div>
-  
-      <!-- Books Section -->
-      <button class="option" onclick="toggleSubSection('books-sub', 'students-sub')">Books</button>
-      <div id="books-sub" class="content-section">
-        <button class="sub-option" onclick="toggleSubContent('books-type1')">Type 1</button>
-        <div id="books-type1" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I borrow books from the library?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What are the overdue charges for books?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> Can I renew my borrowed books online?
-          </div>
-        </div>
-  
-        <button class="sub-option" onclick="toggleSubContent('books-type2')">Type 2</button>
-        <div id="books-type2" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can I request a book that's unavailable?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What is the library's policy on e-books?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> Are textbooks available for rent?
-          </div>
-        </div>
-      </div>
-
-      <!-- Rest of the sections... -->
-
-      <div id="chat-display"></div>
-      <button class="back-button" onclick="goBack()">Back</button>
-  
-      <!-- Scroll buttons -->
-      <button id="scroll-top" class="scroll-btn" onclick="scrollToTop()">↑</button>
-      <button id="scroll-bottom" class="scroll-btn" onclick="scrollToBottom()">↓</button>
+    
+        <div id="chat-display"></div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    
+        <!-- Scroll buttons -->
+        <button id="scroll-top" class="scroll-btn" onclick="scrollToTop()">↑</button>
+        <button id="scroll-bottom" class="scroll-btn" onclick="scrollToBottom()">↓</button>
     </div>
-  
+    
     <!-- Include FontAwesome for icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  
+    
     <script>
-      const answers = {
-        // Answers for existing questions...
-  
-        // Answers for new Students questions
-        "How can I register for classes?": "You can register for classes through the student portal under the 'Course Registration' section.",
-        "What student facilities are available on campus?": "Our campus offers a variety of student facilities, including a library, gym, cafeteria, and recreational areas.",
-        "How do I access the student portal?": "To access the student portal, use your student ID and password to log in on the official website.",
-        "How can I get academic support?": "You can reach out to academic advisors or faculty members for support, or visit the tutoring center on campus.",
-        "How do I apply for student discounts?": "Student discounts are available through the student portal, where you can apply for various offers and benefits.",
-        "What events are organized for students?": "We organize a variety of events, including cultural festivals, academic workshops, and sports tournaments throughout the year.",
-  
-        // Answers for new Books questions
-        "How do I borrow books from the library?": "Books can be borrowed by presenting your student ID at the library checkout desk or via the online library portal.",
-        "What are the overdue charges for books?": "The overdue charges for books are $1 per day per book.",
-        "Can I renew my borrowed books online?": "Yes, you can renew borrowed books through the library's online portal, provided no one else has reserved them.",
-        "How can I request a book that's unavailable?": "You can request an unavailable book by filling out a request form at the library or online through the library catalog.",
-        "What is the library's policy on e-books?": "The library provides a selection of e-books, which can be borrowed through the online library portal for a specific duration.",
-        "Are textbooks available for rent?": "Yes, textbooks are available for rent at the library for a semester at a nominal fee.",
-      };
+        const answers = {
+            "What are the specific diploma courses available at Sankar Polytechnic College?": "Sankar Polytechnic College offers a variety of diploma courses in engineering and technology disciplines.",
+            "Are there any new or specialized courses introduced in recent years?": "Yes, the college introduces new specialized courses based on industry trends and student demands.",
+            "How do these diploma programs align with current industry needs?": "The diploma programs are designed to meet industry standards and incorporate practical training for real-world skills.",
+            "How often is the curriculum updated to reflect industry changes and advancements?": "The curriculum is updated regularly to keep pace with the latest industry trends and technological advancements.",
+            "Are there any industry collaborations or tie-ups for practical exposure?": "Yes, the college has tie-ups with various industries for student internships and live projects.",
+            "How does the curriculum focus on both theoretical knowledge and hands-on skills?": "The curriculum blends theoretical learning with practical workshops, lab sessions, and industry exposure.",
+            "How are the classrooms equipped for interactive learning?": "Classrooms are equipped with modern teaching aids like projectors, smart boards, and interactive learning tools.",
+            "Are the laboratories well-equipped for practical experiments and projects?": "Yes, the laboratories are equipped with state-of-the-art equipment for hands-on learning in various engineering fields.",
+            "How do the college’s facilities support hands-on learning in various engineering disciplines?": "The college offers well-equipped labs, workshops, and real-time projects to enhance practical knowledge in all engineering disciplines.",
+            "What kind of sports and recreational facilities are available for students?": "The campus provides various sports facilities, including a playground, gymnasium, and recreational spaces.",
+            "Does the campus provide on-campus accommodation or hostels for students?": "Yes, the campus offers separate hostels for both male and female students with necessary amenities.",
+            "Are there any health and wellness services available to students on campus?": "The college has a health center offering medical services and wellness programs for students.",
+            "What clubs or student organizations are available at Sankar Polytechnic College?": "There are several clubs and societies, including cultural, technical, and sports organizations, for student engagement.",
+            "How do these clubs contribute to the personal development of students?": "These clubs offer opportunities for leadership, teamwork, and skill development through various activities.",
+            "Are there any technical clubs or innovation-driven societies for engineering students?": "Yes, the college has technical clubs where students can work on projects and innovations in engineering.",
+            "What annual cultural or technical events are organized by the college?": "The college organizes cultural festivals, technical seminars, workshops, and annual fests for students.",
+            "Are there opportunities for students to showcase their talents in these events?": "Students can showcase their talents through competitions, performances, and presentations during the events.",
+            "How does the college support participation in national or international competitions?": "The college supports students' participation by funding, providing guidance, and facilitating travel for competitions.",
+            "What is the eligibility criteria for admission to the diploma courses?": "Students must have completed their high school education with a minimum required percentage to be eligible for diploma courses.",
+            "How is the admission process conducted?": "The admission process includes online registration, followed by counseling and document verification.",
+            "What is the typical timeline for applying and securing admission?": "The admission process usually begins in May and continues through the end of June.",
+            "Does Sankar Polytechnic College offer any merit-based scholarships?": "Yes, merit-based scholarships are available for students based on academic performance.",
+            "Are there any government scholarships available for students?": "Yes, government scholarships are available for eligible students based on caste, income, and other criteria.",
+            "What are the options for students in need of financial assistance?": "Students can apply for various financial aid programs, including scholarships, loans, and fee waivers."
+        };
       function toggleSubSection(sectionIdToShow, sectionIdToHide) {
         const sectionToShow = document.getElementById(sectionIdToShow);
         const sectionToHide = document.getElementById(sectionIdToHide);
