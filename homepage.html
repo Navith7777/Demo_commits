@@ -5,6 +5,149 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Support Chat Bot</title>
   <style>
+
+    /* Basic chatbot container styles */
+.chatbot-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Title */
+  .title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Button Styles */
+  button.option, button.sub-option {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  button.option:hover, button.sub-option:hover {
+    background-color: #0056b3;
+  }
+  
+  button.back-button {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.back-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Scroll buttons */
+  .scroll-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5em;
+  }
+  
+  .scroll-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Chat message display */
+  #chat-display {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+  
+  .chat-message, .answer {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .answer {
+    background-color: #e7f3ff;
+  }
+  
+  .question {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+  }
+  
+  .question:hover {
+    background-color: #e7e7e7;
+  }
+  
+  .sub-content {
+    display: none;
+    margin-left: 20px;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    .chatbot-container {
+      width: 95%;
+      padding: 15px;
+    }
+  
+    .title {
+      font-size: 1.2em;
+    }
+  
+    button.option, button.sub-option, button.back-button {
+      font-size: 0.9em;
+      padding: 8px;
+    }
+  
+    .scroll-btn {
+      font-size: 1.2em;
+      padding: 8px;
+    }
+  }
+  
+  /* Desktop Responsiveness */
+  @media (min-width: 601px) {
+    .chatbot-container {
+      max-width: 500px;
+    }
+  }
+  
+  /* Hover effect for chatbot */
+  .chatbot-container:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+    
     .chat-message::before {
         content: "👤"; /* User icon */
         font-size: 18px;
@@ -130,7 +273,7 @@
       <div class="title">Chat Bot</div>
   
       <!-- Admission Section -->
-      <button class="option" onclick="toggleSubSection('admission-sub')">Admission</button>
+      <button class="option" onclick="toggleSubSection('admission-sub', 'staffs-sub')">Admission</button>
       <div id="admission-sub" class="content-section">
         <button class="sub-option" onclick="toggleSubContent('admission-type1')">Type 1</button>
         <div id="admission-type1" class="sub-content">
@@ -160,36 +303,45 @@
       </div>
   
       <!-- Staff Section -->
-      <button class="option" onclick="toggleSubSection('staff-sub')">Staff</button>
-      <div id="staff-sub" class="content-section">
-        <button class="sub-option" onclick="toggleSubContent('staff-type1')">Type 1</button>
-        <div id="staff-type1" class="sub-content">
+      <button class="option" onclick="toggleSubSection('staffs-sub', 'admission-sub')">Staffs</button>
+      <div id="staffs-sub" class="content-section">
+        <button class="sub-option" onclick="toggleSubContent('staffs-type1')">Type 1</button>
+        <div id="staffs-type1" class="sub-content">
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What is the role of the staff in admission?
+            <i class="fas fa-question-circle"></i> What is the staff recruitment process?
           </div>
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can I contact the staff?
+            <i class="fas fa-question-circle"></i> What are the qualifications needed for teaching staff?
+          </div>
+          <div class="question" onclick="handleQuestionClick(this)">
+            <i class="fas fa-question-circle"></i> How can I contact staff for academic queries?
           </div>
         </div>
   
-        <button class="sub-option" onclick="toggleSubContent('staff-type2')">Type 2</button>
-        <div id="staff-type2" class="sub-content">
+        <button class="sub-option" onclick="toggleSubContent('staffs-type2')">Type 2</button>
+        <div id="staffs-type2" class="sub-content">
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can staff assist with scholarships?
+            <i class="fas fa-question-circle"></i> Are staff positions available for non-teaching roles?
           </div>
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What is the staff's role in exam coordination?
+            <i class="fas fa-question-circle"></i> How do I apply for a staff position?
+          </div>
+          <div class="question" onclick="handleQuestionClick(this)">
+            <i class="fas fa-question-circle"></i> What benefits do staff members receive?
           </div>
         </div>
       </div>
   
       <!-- Students Section -->
-      <button class="option" onclick="toggleSubSection('students-sub')">Students</button>
+      <button class="option" onclick="toggleSubSection('students-sub', 'staffs-sub')">Students</button>
       <div id="students-sub" class="content-section">
         <button class="sub-option" onclick="toggleSubContent('students-type1')">Type 1</button>
         <div id="students-type1" class="sub-content">
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What is the student code of conduct?
+            <i class="fas fa-question-circle"></i> How can I register for classes?
+          </div>
+          <div class="question" onclick="handleQuestionClick(this)">
+            <i class="fas fa-question-circle"></i> What student facilities are available on campus?
           </div>
           <div class="question" onclick="handleQuestionClick(this)">
             <i class="fas fa-question-circle"></i> How do I access the student portal?
@@ -199,64 +351,55 @@
         <button class="sub-option" onclick="toggleSubContent('students-type2')">Type 2</button>
         <div id="students-type2" class="sub-content">
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I request a transcript?
+            <i class="fas fa-question-circle"></i> How can I get academic support?
           </div>
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How can I join student clubs?
+            <i class="fas fa-question-circle"></i> How do I apply for student discounts?
+          </div>
+          <div class="question" onclick="handleQuestionClick(this)">
+            <i class="fas fa-question-circle"></i> What events are organized for students?
           </div>
         </div>
       </div>
   
-      <!-- Labs Section -->
-      <button class="option" onclick="toggleSubSection('labs-sub')">Labs</button>
-      <div id="labs-sub" class="content-section">
-        <button class="sub-option" onclick="toggleSubContent('labs-type1')">Type 1</button>
-        <div id="labs-type1" class="sub-content">
+      <!-- Books Section -->
+      <button class="option" onclick="toggleSubSection('books-sub', 'students-sub')">Books</button>
+      <div id="books-sub" class="content-section">
+        <button class="sub-option" onclick="toggleSubContent('books-type1')">Type 1</button>
+        <div id="books-type1" class="sub-content">
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What are the lab hours?
+            <i class="fas fa-question-circle"></i> How do I borrow books from the library?
           </div>
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I reserve a lab?
-          </div>
-        </div>
-  
-        <button class="sub-option" onclick="toggleSubContent('labs-type2')">Type 2</button>
-        <div id="labs-type2" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What safety protocols must be followed in the lab?
+            <i class="fas fa-question-circle"></i> What are the overdue charges for books?
           </div>
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> Are there any specific lab equipment policies?
-          </div>
-        </div>
-      </div>
-  
-      <!-- Formalities Section -->
-      <button class="option" onclick="toggleSubSection('formalities-sub')">Formalities</button>
-      <div id="formalities-sub" class="content-section">
-        <button class="sub-option" onclick="toggleSubContent('formalities-type1')">Type 1</button>
-        <div id="formalities-type1" class="sub-content">
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I complete my registration?
-          </div>
-          <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What forms do I need to fill out?
+            <i class="fas fa-question-circle"></i> Can I renew my borrowed books online?
           </div>
         </div>
   
-        <button class="sub-option" onclick="toggleSubContent('formalities-type2')">Type 2</button>
-        <div id="formalities-type2" class="sub-content">
+        <button class="sub-option" onclick="toggleSubContent('books-type2')">Type 2</button>
+        <div id="books-type2" class="sub-content">
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> How do I get my ID card?
+            <i class="fas fa-question-circle"></i> How can I request a book that's unavailable?
           </div>
           <div class="question" onclick="handleQuestionClick(this)">
-            <i class="fas fa-question-circle"></i> What documents are needed for fee payment?
+            <i class="fas fa-question-circle"></i> What is the library's policy on e-books?
+          </div>
+          <div class="question" onclick="handleQuestionClick(this)">
+            <i class="fas fa-question-circle"></i> Are textbooks available for rent?
           </div>
         </div>
       </div>
-  
+
+      <!-- Rest of the sections... -->
+
       <div id="chat-display"></div>
       <button class="back-button" onclick="goBack()">Back</button>
+  
+      <!-- Scroll buttons -->
+      <button id="scroll-top" class="scroll-btn" onclick="scrollToTop()">↑</button>
+      <button id="scroll-bottom" class="scroll-btn" onclick="scrollToBottom()">↓</button>
     </div>
   
     <!-- Include FontAwesome for icons -->
@@ -264,34 +407,39 @@
   
     <script>
       const answers = {
-        "What are the admission requirements?": "Admission requires a completed application, transcripts, and exam scores.",
-        "How can I apply for a scholarship?": "Apply via the financial aid portal and check deadlines.",
-        "What documents are required?": "You need ID proof, transcripts, and forms.",
-        "What are the deadlines?": "Check the college website for program-specific deadlines.",
-        "Are there any entrance exams?": "Yes, some programs require entrance exams. Check eligibility criteria.",
-        "What is the tuition fee?": "Tuition fees vary. Visit the college website for details.",
-        "What is the role of the staff in admission?": "Staff assist with application processing, verification, and guiding you through the admission steps.",
-        "How can I contact the staff?": "You can contact staff through the official email or visit the help desk in the administration building.",
-        "How can staff assist with scholarships?": "Staff can guide you through the application process and eligibility criteria for scholarships.",
-        "What is the staff's role in exam coordination?": "Staff assist in managing exam schedules, locations, and handling student queries.",
-        "What is the student code of conduct?": "The student code of conduct outlines behavior expectations, including academic honesty and respect for others.",
-        "How do I access the student portal?": "You can log in to the student portal using your student ID and password on the official website.",
-        "How do I request a transcript?": "You can request a transcript through the student portal or by contacting the registrar's office.",
-        "How can I join student clubs?": "You can join student clubs by visiting the student affairs office or signing up through the student portal.",
-        "What are the lab hours?": "Lab hours vary. Please check the schedule posted outside each lab or consult the department.",
-        "How do I reserve a lab?": "You can reserve a lab by filling out the reservation form on the department's website.",
-        "What safety protocols must be followed in the lab?": "Always wear safety gear, follow lab rules, and report any accidents immediately to the lab supervisor.",
-        "Are there any specific lab equipment policies?": "Yes, equipment should be used with care. Any damage should be reported immediately, and usage guidelines must be followed.",
-        "How do I complete my registration?": "Complete your registration by submitting required forms and making the necessary fee payments through the portal.",
-        "What forms do I need to fill out?": "You need to fill out the registration form, health form, and emergency contact form.",
-        "How do I get my ID card?": "You can collect your ID card from the student services office after completing your registration.",
-        "What documents are needed for fee payment?": "You will need proof of enrollment and your payment reference number to pay fees."
-      };
+        // Answers for existing questions...
   
-      function toggleSubSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        section.style.display = section.style.display === 'block' ? 'none' : 'block';
-        document.querySelector('.back-button').style.display = section.style.display === 'block' ? 'inline-block' : 'none';
+        // Answers for new Students questions
+        "How can I register for classes?": "You can register for classes through the student portal under the 'Course Registration' section.",
+        "What student facilities are available on campus?": "Our campus offers a variety of student facilities, including a library, gym, cafeteria, and recreational areas.",
+        "How do I access the student portal?": "To access the student portal, use your student ID and password to log in on the official website.",
+        "How can I get academic support?": "You can reach out to academic advisors or faculty members for support, or visit the tutoring center on campus.",
+        "How do I apply for student discounts?": "Student discounts are available through the student portal, where you can apply for various offers and benefits.",
+        "What events are organized for students?": "We organize a variety of events, including cultural festivals, academic workshops, and sports tournaments throughout the year.",
+  
+        // Answers for new Books questions
+        "How do I borrow books from the library?": "Books can be borrowed by presenting your student ID at the library checkout desk or via the online library portal.",
+        "What are the overdue charges for books?": "The overdue charges for books are $1 per day per book.",
+        "Can I renew my borrowed books online?": "Yes, you can renew borrowed books through the library's online portal, provided no one else has reserved them.",
+        "How can I request a book that's unavailable?": "You can request an unavailable book by filling out a request form at the library or online through the library catalog.",
+        "What is the library's policy on e-books?": "The library provides a selection of e-books, which can be borrowed through the online library portal for a specific duration.",
+        "Are textbooks available for rent?": "Yes, textbooks are available for rent at the library for a semester at a nominal fee.",
+      };
+      function toggleSubSection(sectionIdToShow, sectionIdToHide) {
+        const sectionToShow = document.getElementById(sectionIdToShow);
+        const sectionToHide = document.getElementById(sectionIdToHide);
+  
+        sectionToShow.style.display = sectionToShow.style.display === 'block' ? 'none' : 'block';
+        sectionToHide.style.display = 'none'; // Hide the other section
+  
+        // Hide all other sections when one section is shown
+        const allSections = document.querySelectorAll('.content-section');
+        allSections.forEach(s => {
+          if (s.id !== sectionIdToShow && s.id !== sectionIdToHide) s.style.display = 'none';
+        });
+  
+        // Toggle "Back" button visibility
+        document.querySelector('.back-button').style.display = sectionToShow.style.display === 'block' ? 'inline-block' : 'none';
       }
   
       function toggleSubContent(contentId) {
@@ -325,8 +473,47 @@
         document.querySelectorAll('.content-section, .sub-content').forEach(section => section.style.display = 'none');
         document.querySelector('.back-button').style.display = 'none';
       }
+  
+      // Scroll to top
+      function scrollToTop() {
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        document.body.scrollTop = 0; // For Safari
+      }
+  
+      // Scroll to bottom
+      function scrollToBottom() {
+        const chatDisplay = document.getElementById('chat-display');
+        chatDisplay.scrollTop = chatDisplay.scrollHeight;
+      }
+  
+      // Optionally, hide buttons if not needed (e.g., on small screens)
+      window.onscroll = function() {
+        toggleScrollButtonVisibility();
+      };
+  
+      function toggleScrollButtonVisibility() {
+        const scrollTopBtn = document.getElementById('scroll-top');
+        const scrollBottomBtn = document.getElementById('scroll-bottom');
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+          scrollTopBtn.style.display = "block";
+        } else {
+          scrollTopBtn.style.display = "none";
+        }
+        if (document.body.scrollHeight - document.body.scrollTop - window.innerHeight > 300) {
+          scrollBottomBtn.style.display = "block";
+        } else {
+          scrollBottomBtn.style.display = "none";
+        }
+      }
+  
+      // Existing script functions...
     </script>
   </body>
+
+  
+  
+  
+  
   
   
 </html>
