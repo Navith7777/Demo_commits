@@ -1,49 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f8f8f8;
-            color: #333;
-            padding: 50px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 80px;
-            color: #e74c3c;
-            margin: 0;
-        }
-        p {
-            font-size: 20px;
-        }
-        a {
-            text-decoration: none;
-            color: #3498db;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #2980b9;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Support Chat Bot</title>
+  <style>
+    .loader {
+      display: none; /* Initially hidden */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+    /* From Uiverse.io by KSAplay */ 
+
+
+.loading-text {
+  color: rgb(0, 0, 0);
+  font-size: 14pt;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.dot {
+  margin-left: 3px;
+  animation: blink 1.5s infinite;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.loading-bar-background {
+  --height: 30px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 200px;
+  height: var(--height);
+  background-color: #212121 /*change this*/;
+  box-shadow: #0c0c0c -2px 2px 4px 0px inset;
+  border-radius: calc(var(--height) / 2);
+}
+
+.loading-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  --height: 20px;
+  width: 0%;
+  height: var(--height);
+  overflow: hidden;
+  background: rgb(222, 74, 15);
+  background: linear-gradient(
+    0deg,
+    rgba(222, 74, 15, 1) 0%,
+    rgba(249, 199, 79, 1) 100%
+  );
+  border-radius: calc(var(--height) / 2);
+  animation: loading 4s ease-out infinite;
+}
+
+.white-bars-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.white-bar {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  width: 10px;
+  height: 45px;
+  opacity: 0.3;
+  rotate: 45deg;
+}
+
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+  80% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+    .chat-message, .answer {
+      display: flex;
+      align-items: center;
+    }
+    
+    .chat-message::before {
+      content: "👤"; /* User icon */
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    
+    .answer::before {
+      content: "✏️"; /* Chatbot icon */
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(45deg, #000428, #004e92, #000428);
+      background-size: 400% 400%;
+      animation: galaxyAnimation 3s ease infinite, glowingEffect 3s ease-in-out infinite;
+    }
+    
+    @keyframes galaxyAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    @keyframes glowingEffect {
+      0% {
+        box-shadow: 0 0 20px #004e92, 0 0 30px #004e92, 0 0 40px #004e92, 0 0 50px #004e92;
+      }
+      50% {
+        box-shadow: 0 0 30px #00d4ff, 0 0 40px #00d4ff, 0 0 50px #00d4ff, 0 0 60px #00d4ff;
+      }
+      100% {
+        box-shadow: 0 0 20px #004e92, 0 0 30px #004e92, 0 0 40px #004e92, 0 0 50px #004e92;
+      }
+    }
+    .chatbot-container {
+      width: 400px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .option {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      margin: 10px 0;
+      cursor: pointer;
+      text-align: left;
+    }
+    .option:hover {
+      background-color: #0056b3;
+    }
+    .content-section {
+      display: none;
+      margin-top: 10px;
+    }
+    .question {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #chat-display {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+      display: block;
+      min-height: 150px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    .chat-message, .answer {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in forwards;
+    }
+    .chat-message {
+      background-color: #e1f5fe;
+      text-align: left;
+    }
+    .answer {
+      background-color: #d4edda;
+      text-align: left;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .back-button {
+      background-color: #6c757d;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      margin-top: 10px;
+      cursor: pointer;
+      display: none;
+    }
+    .back-button:hover {
+      background-color: #5a6268;
+    }
+
+    .title {
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 0.2em solid green; /* Cursor */
+      animation:
+        typeAndDelete 4s steps(11) infinite,
+        blinkCursor 0.5s step-end infinite alternate;
+      margin-top: 1.5em;
+    }
+    
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>404</h1>
-        <h2>Oops! Page Not Found</h2>
-        <p>The page you are looking for might have been removed or is temporarily unavailable.</p>
-        <a href="/">Go Back to Home</a>
+  <div class="chatbot-container">
+    <div class="title">Chat Bot</div>
+
+    <button class="option" onclick="handleOptionClick('Admission', this)">Admission</button>
+    <div id="admission" class="content-section">
+      <div class="question" onclick="handleQuestionClick(this)">What are the admission requirements?</div>
+      <div class="question" onclick="handleQuestionClick(this)">How can I apply for a scholarship?</div>
+      <div class="question" onclick="handleQuestionClick(this)">What documents are required for admission?</div>
+      <div class="question" onclick="handleQuestionClick(this)">What are the admission deadlines?</div>
     </div>
+
+    <button class="option" onclick="handleOptionClick('Students', this)">Students</button>
+    <div id="students" class="content-section">
+      <div class="question" onclick="handleQuestionClick(this)">How can I access online classes?</div>
+      <div class="question" onclick="handleQuestionClick(this)">Where can I find study materials?</div>
+      <div class="question" onclick="handleQuestionClick(this)">Who can I contact for academic support?</div>
+      <div class="question" onclick="handleQuestionClick(this)">What extracurricular activities are available?</div>
+    </div>
+
+    <button class="option" onclick="handleOptionClick('Staffs', this)">Staffs</button>
+    <div id="staffs" class="content-section">
+      <div class="question" onclick="handleQuestionClick(this)">How do I log in to the staff portal?</div>
+      <div class="question" onclick="handleQuestionClick(this)">Where can I access teaching materials?</div>
+      <div class="question" onclick="handleQuestionClick(this)">How can I check my teaching schedule?</div>
+      <div class="question" onclick="handleQuestionClick(this)">How do I submit grades for students?</div>
+    </div>
+
+    <button class="option" onclick="handleOptionClick('Labs', this)">Labs</button>
+    <div id="labs" class="content-section">
+      <div class="question" onclick="handleQuestionClick(this)">How do I book a lab session?</div>
+      <div class="question" onclick="handleQuestionClick(this)">What are the lab safety guidelines?</div>
+      <div class="question" onclick="handleQuestionClick(this)">Where can I find lab equipment manuals?</div>
+      <div class="question" onclick="handleQuestionClick(this)">Can I access labs outside class hours?</div>
+    </div>
+
+    <button class="option" onclick="handleOptionClick('Departments', this)">Departments</button>
+    <div id="departments" class="content-section">
+      <div class="question" onclick="handleQuestionClick(this)">How can I contact my department head?</div>
+      <div class="question" onclick="handleQuestionClick(this)">What research opportunities are available?</div>
+      <div class="question" onclick="handleQuestionClick(this)">How do I switch departments?</div>
+      <div class="question" onclick="handleQuestionClick(this)">Where can I find department announcements?</div>
+    </div>
+
+    <div id="chat-display"></div>
+
+    <button class="back-button" onclick="goBack()">Back</button>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loading-text">
+      Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+    </div>
+    <div class="loading-bar-background">
+      <div class="loading-bar">
+        <div class="white-bars-container">
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+          <div class="white-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const answers = {
+      "What are the admission requirements?": "Admission requirements include a completed application, high school transcripts, and entrance exam scores.",
+      "How can I apply for a scholarship?": "Scholarships can be applied for through the college's financial aid portal. Check deadlines and requirements.",
+      "What documents are required for admission?": "You need to submit identity proof, academic transcripts, and application forms.",
+      "What are the admission deadlines?": "Deadlines vary by program. Visit the college website for the latest dates.",
+      "How can I access online classes?": "Log in to the student portal with your credentials to access your courses.",
+      "Where can I find study materials?": "Study materials are available in the college's online library and course portals.",
+      "Who can I contact for academic support?": "Reach out to the academic advisor or student help desk for guidance.",
+      "What extracurricular activities are available?": "Sports, music, drama, and tech clubs are available for students.",
+      "How do I log in to the staff portal?": "Use your assigned credentials to log in via the official portal.",
+      "Where can I access teaching materials?": "All teaching materials are available on the faculty portal.",
+      "How can I check my teaching schedule?": "Your schedule is available on the college timetable system.",
+      "How do I submit grades for students?": "Use the grading portal to submit student scores."
+    };
+
+    let currentSection = null;
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.content-section').forEach(section => section.style.display = 'none');
+      document.getElementById(sectionId).style.display = 'block';
+      currentSection = sectionId;
+    }
+
+    function handleOptionClick(sectionName, button) {
+      document.querySelectorAll('.option').forEach(btn => {
+        if (btn !== button) btn.style.display = 'none';
+      });
+
+      const chatDisplay = document.getElementById('chat-display');
+      const userMessage = document.createElement('div');
+      userMessage.className = 'chat-message';
+      userMessage.textContent = `You selected: ${sectionName}`;
+      chatDisplay.appendChild(userMessage);
+
+      showSection(sectionName.toLowerCase());
+      document.querySelector('.back-button').style.display = 'block';
+    }
+
+    function handleQuestionClick(questionElement) {
+      const chatDisplay = document.getElementById('chat-display');
+      const loader = document.getElementById('loader');
+
+      // Show loader
+      loader.style.display = 'block';
+
+      // Display the user's question
+      const userMessage = document.createElement('div');
+      userMessage.className = 'chat-message';
+      userMessage.textContent = questionElement.textContent;
+      chatDisplay.appendChild(userMessage);
+
+      // Hide the clicked question
+      questionElement.style.display = 'none';
+
+      // Show the corresponding answer after a delay
+      setTimeout(() => {
+        loader.style.display = 'none'; // Hide loader
+
+        const answerMessage = document.createElement('div');
+        answerMessage.className = 'answer';
+        answerMessage.textContent = answers[questionElement.textContent] || "I'm sorry, I don't have an answer for that.";
+        chatDisplay.appendChild(answerMessage);
+        chatDisplay.scrollTop = chatDisplay.scrollHeight; // Auto-scroll
+      }, 1000);
+
+      // Show the Back button if no more questions remain
+      const contentSection = questionElement.parentElement;
+      const remainingQuestions = contentSection.querySelectorAll('.question:not([style="display: none;"])');
+      if (remainingQuestions.length === 0) {
+        document.querySelector('.back-button').style.display = 'block';
+      }
+    }
+
+    function goBack() {
+      if (currentSection) {
+        document.getElementById(currentSection).style.display = 'block';
+      }
+      document.querySelector('.back-button').style.display = 'none';
+      document.querySelectorAll('.option').forEach(btn => btn.style.display = 'block');
+    }
+  </script>
 </body>
+
 </html>
